@@ -1,318 +1,133 @@
-
 @import "tailwindcss";
-
 
 @theme {
   /* Colors */
-  --color-ink:       #0a0908;
-  --color-ink-2:     #121110;
-  --color-bone:      #f2ece1;
-  --color-bone-dim:  #a89f90;
-  --color-accent:    #ff4d1c;
-  --color-accent-2:  #ffb703;
-  --color-line:      rgba(242, 236, 225, 0.14);
+  --color-background: #0A0B0E;
+  --color-surface: #14171F;
+  --color-card: #1B1E28;
+  --color-foreground: #F3ECE1;
+  --color-muted: #A39B91;
+  --color-accent: #C28B5E;
+  --color-cta: #DDB681;
+  --color-cta-hover: #F0C48A;
+  --color-border: #252833;
 
-  /* Fonts — wired to next/font variables in layout.tsx */
-  --font-display: var(--font-anton), "Arial Narrow", sans-serif;
-  --font-sans:    var(--font-space-grotesk), system-ui, -apple-system, sans-serif;
-
-  /* Fluid spacing */
-  --spacing-pad:  clamp(20px, 5vw, 72px);
-
-  /* Easing */
-  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  /* Typography hooks (matching layout.tsx variables) */
+  --font-anton: var(--font-anton);
+  --font-space: var(--font-space-grotesk);
 
   /* Animations */
-  --animate-grain: grain-shift 0.6s steps(3) infinite;
-  --animate-ring-pulse: ring-pulse 7s ease-in-out infinite;
-  --animate-scroll-slide: scroll-slide 2.2s var(--ease-out-expo) infinite;
-  --animate-loader: loader-fill 1.5s var(--ease-out-expo) forwards;
+  --animate-marquee: marquee 20s linear infinite;
+  --animate-reveal: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fade-in: fadeIn 0.5s ease-out forwards;
 }
 
+/* Keyframes */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
 
-@layer base {
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
+@keyframes reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
   }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-  html {
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Base Styles */
+@layer base {
+  :root {
+    color-scheme: dark;
   }
 
   body {
-    margin: 0;
-    background: var(--color-ink);
-    color: var(--color-bone);
-    font-family: var(--font-sans);
-    font-size: 16px;
-    line-height: 1.55;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    @apply bg-background text-foreground font-space antialiased overflow-x-hidden;
   }
 
-  img,
-  canvas,
-  svg {
-    display: block;
-    max-width: 100%;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  button {
-    font: inherit;
-    color: inherit;
-    background: none;
-    border: 0;
-    cursor: pointer;
-  }
-
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  h1, h2, h3, h4, h5, h6, p {
-    margin: 0;
+  /* Map display font to all headings by default */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-anton font-normal tracking-wide;
   }
 
   ::selection {
-    background: var(--color-accent);
-    color: var(--color-ink);
+    @apply bg-accent text-background;
   }
 
-  /* Scrollbar */
+  /* Custom Scrollbar */
   ::-webkit-scrollbar {
-    width: 9px;
+    width: 6px;
+    height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--color-ink);
+    @apply bg-background;
   }
   ::-webkit-scrollbar-thumb {
-    background: #2a2724;
+    @apply bg-border rounded-full;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-accent);
-  }
-
-  /* Hide native cursor on fine pointers so custom cursor takes over */
-  @media (pointer: fine) {
-    body,
-    a,
-    button {
-      cursor: none;
-    }
-  }
-
-  /* Reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
-    [data-reveal] {
-      opacity: 1 !important;
-      transform: none !important;
-    }
+    @apply bg-muted;
   }
 }
 
-/* ─────────────────────────────────────────────
-   3. KEYFRAMES
-   ───────────────────────────────────────────── */
-
-@keyframes grain-shift {
-  0%   { transform: translate(0, 0); }
-  33%  { transform: translate(-3%, 2%); }
-  66%  { transform: translate(2%, -3%); }
-  100% { transform: translate(0, 0); }
-}
-
-@keyframes ring-pulse {
-  0%, 100% {
-    opacity: 0.15;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    opacity: 0.5;
-    transform: translate(-50%, -50%) scale(1.05);
-  }
-}
-
-@keyframes scroll-slide {
-  0%        { transform: translateX(-100%); }
-  60%, 100% { transform: translateX(100%); }
-}
-
-@keyframes loader-fill {
-  to { width: 100%; }
-}
-
-/* ─────────────────────────────────────────────
-   4. UTILITIES
-   ───────────────────────────────────────────── */
-
+/* Utilities */
 @layer utilities {
-  /* Page gutter + max width wrapper */
-  .wrap {
-    width: 100%;
-    max-width: 1440px;
-    margin-inline: auto;
-    padding-inline: var(--spacing-pad);
+  /* Procedural Grain Overlay */
+  .bg-grain {
+    position: relative;
   }
-
-  /* Eyebrow — small uppercase tracked label */
-  .eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.36em;
-    text-transform: uppercase;
-    color: var(--color-bone-dim);
-  }
-
-  /* Wide tracking, used on metadata + nav */
-  .tracking-label {
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-  }
-
-  /* Display type — tight, poster-like */
-  .display {
-    font-family: var(--font-display);
-    line-height: 0.86;
-    letter-spacing: -0.015em;
-  }
-
-  /* Outlined text (used on ALTÉ FUJI, mega accents) */
-  .text-outline {
-    color: transparent;
-    -webkit-text-stroke: 1.5px currentColor;
-  }
-
-  /* Reveal on scroll — driven by useReveal hook */
-  [data-reveal] {
-    opacity: 0;
-    transform: translateY(34px);
-    transition:
-      opacity 0.9s var(--ease-out-expo),
-      transform 0.9s var(--ease-out-expo);
-    will-change: opacity, transform;
-  }
-  [data-reveal].is-in {
-    opacity: 1;
-    transform: none;
-  }
-
-  /* Full-bleed canvas helper */
-  .canvas-fill {
+  .bg-grain::after {
+    content: "";
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    inset: -100%;
+    width: 300%;
+    height: 300%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.06'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 50;
+    animation: grain 8s steps(10) infinite;
+  }
+
+  @keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    20% { transform: translate(-15%, 5%); }
+    30% { transform: translate(7%, -25%); }
+    40% { transform: translate(-5%, 25%); }
+    50% { transform: translate(-15%, 10%); }
+    60% { transform: translate(15%, 0%); }
+    70% { transform: translate(0%, 15%); }
+    80% { transform: translate(3%, 35%); }
+    90% { transform: translate(-10%, 10%); }
+  }
+
+  /* Design patterns mentioned in brief */
+  .clip-arch {
+    clip-path: ellipse(60% 100% at 50% 100%);
+  }
+  
+  .clip-cut-corner {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 32px), calc(100% - 32px) 100%, 0 100%);
   }
 }
 
-/* ─────────────────────────────────────────────
-   5. COMPONENT PRIMITIVES
-   Grain, vignette, cursor — fixed overlays that
-   live once in layout.tsx. Plain CSS here so
-   they don't get purged and stay deterministic.
-   ───────────────────────────────────────────── */
-
-/* Grain overlay */
-.grain {
-  position: fixed;
-  inset: -120%;
-  z-index: 9998;
-  pointer-events: none;
-  opacity: 0.055;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  animation: var(--animate-grain);
-}
-
-/* Vignette */
-.vignette {
-  position: fixed;
-  inset: 0;
-  z-index: 9997;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 45%,
-    rgba(0, 0, 0, 0.55) 100%
-  );
-}
-
-/* Custom cursor */
-.cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  pointer-events: none;
-  mix-blend-mode: difference;
-}
-.cursor__dot {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color-bone);
-  transform: translate(-50%, -50%);
-  transition: opacity 0.2s;
-}
-.cursor__ring {
-  position: absolute;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid rgba(242, 236, 225, 0.45);
-  transform: translate(-50%, -50%);
-  display: grid;
-  place-items: center;
-  transition:
-    width 0.35s var(--ease-out-expo),
-    height 0.35s var(--ease-out-expo),
-    background 0.35s var(--ease-out-expo),
-    border-color 0.35s var(--ease-out-expo);
-}
-.cursor__label {
-  font-family: var(--font-display);
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  opacity: 0;
-  transition: opacity 0.25s var(--ease-out-expo);
-}
-.cursor.is-active .cursor__ring {
-  width: 82px;
-  height: 82px;
-  background: var(--color-bone);
-  border-color: var(--color-bone);
-}
-.cursor.is-active .cursor__label {
-  opacity: 1;
-  color: var(--color-ink);
-}
-.cursor.is-active .cursor__dot {
-  opacity: 0;
-}
-
-@media (pointer: coarse) {
-  .cursor {
-    display: none;
+/* Accessibility: Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
