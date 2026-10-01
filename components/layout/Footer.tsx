@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowUp, Globe, Mail } from "lucide-react";
 import { OshamoText } from "@/components/ui/OshamoText";
+import { Eyebrow } from "../ui/Eyebrow";
 
 function Github({ className, size = 16 }: { className?: string; size?: number }) {
   return (
@@ -37,9 +38,7 @@ export function Footer() {
         {/* TOP ROW: Visual Brand Banner + Back To Top Button */}
         <div className="flex flex-col gap-8 pb-16 border-b border-border/50 md:flex-row md:items-end md:justify-between">
           <div className="flex flex-col gap-2">
-            <span className="text-xs font-mono uppercase tracking-widest text-accent">
-              AFRO-FUSION / ALTÉ SOUND
-            </span>
+            <Eyebrow className="w-fit">AFRO-FUSION / ALTÉ SOUND</Eyebrow>
             <OshamoText size="xl" className="tracking-tight" />
           </div>
 
@@ -67,9 +66,7 @@ export function Footer() {
                 <span className="text-xs font-mono uppercase tracking-widest text-muted">
                   01 // Concept Notice
                 </span>
-                <span className="rounded-full border border-accent/30 bg-accent/10 px-2.5 py-0.5 text-[10px] font-mono uppercase text-accent">
-                  Unofficial
-                </span>
+                <Eyebrow>Fan-Made</Eyebrow>
               </div>
               <p className="mt-2 text-sm text-muted leading-relaxed">
                 A fan-made digital experience and portfolio project created to showcase modern web design, fluid motion graphics, and visual artist identity for OSHAMO.
@@ -84,10 +81,7 @@ export function Footer() {
                 <span className="text-xs font-mono uppercase tracking-widest text-muted">
                   02 // Engineering
                 </span>
-                <div className="flex items-center gap-1.5 rounded-full border border-cta/30 bg-cta/10 px-2.5 py-0.5 text-[10px] font-mono uppercase text-cta">
-                  <span className="h-1.5 w-1.5 rounded-full bg-cta animate-pulse" />
-                  Available
-                </div>
+                <Eyebrow >Available</Eyebrow>
               </div>
               <div>
                 <h3 className="text-xl font-bold tracking-wide text-foreground">
