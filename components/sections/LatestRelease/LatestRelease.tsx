@@ -1,13 +1,16 @@
 "use client";
 
-import { Sparkles, ExternalLink, Play } from "lucide-react";
+import { useState } from "react";
+import { Sparkles, BookOpen, Play } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
+import { Button } from "@/components/ui/Button";
+import { ReleaseFlipCard } from "./ReleaseFlipCard";
 import { TRACKS } from "@/lib/data/tracks";
 
 export function LatestRelease() {
-  const latestTrack =
-    TRACKS.find((t) => t.id === "for-your-tears") || TRACKS[0];
+  const [isFlipped, setIsFlipped] = useState(false);
+  const latestTrack = TRACKS.find((t) => t.id === "for-your-tears") || TRACKS[0];
 
   return (
     <section
@@ -42,7 +45,7 @@ export function LatestRelease() {
           </Reveal>
         </div>
 
-        {/* Hero Release Card */}
+        {/* Hero Release Glass Container */}
         <Reveal direction="up" delay={0.3}>
           <div className="relative rounded-3xl border border-border/70 bg-card/60 p-6 md:p-10 backdrop-blur-xl shadow-2xl">
             <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
@@ -67,39 +70,33 @@ export function LatestRelease() {
                     {latestTrack.artist}
                   </p>
 
-                  <p className="text-sm text-muted leading-relaxed max-w-lg mb-8">
-                    An emotional afro-fusion anthem blending soulful alté melodies, rhythmic percussion, and raw narrative storytelling.
+                  {/* Updated Clean Description */}
+                  <p className="text-sm md:text-base text-foreground/80 leading-relaxed max-w-lg mb-8 font-space">
+                    What started as a fictional song about grief became something much more personal.
                   </p>
                 </div>
 
+                {/* Dynamic Flip Action Button */}
                 <div className="flex flex-wrap items-center gap-4">
-                  <a
-                    href={`https://open.spotify.com/track/${latestTrack.spotifyId}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-cta px-6 py-3 font-mono text-xs uppercase tracking-wider text-background hover:bg-cta-hover transition-colors font-semibold"
+                  <Button
+                    variant={isFlipped ? "primary" : "secondary"}
+                    size="md"
+                    onClick={() => setIsFlipped(!isFlipped)}
+                    icon={isFlipped ? <Play size={15} /> : <BookOpen size={15} />}
+                    iconPosition="left"
                   >
-                    <Play size={14} />
-                    <span>Open in Spotify</span>
-                    <ExternalLink size={14} />
-                  </a>
+                    {isFlipped ? "Listen Now" : "Read Story"}
+                  </Button>
                 </div>
               </div>
 
-              {/* Right Side: Direct Embedded Player */}
+              {/* Right Side: Interactive 3D Flip Card */}
               <div className="lg:col-span-6">
-                <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-surface shadow-xl">
-                  <iframe
-                    title={`Spotify Player - ${latestTrack.title}`}
-                    src={latestTrack.embedUrl}
-                    width="100%"
-                    height="352"
-                    frameBorder="0"
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                    loading="lazy"
-                    className="block w-full rounded-2xl"
-                  />
-                </div>
+                <ReleaseFlipCard
+                  isFlipped={isFlipped}
+                  embedUrl={latestTrack.embedUrl}
+                  title={latestTrack.title}
+                />
               </div>
 
             </div>
