@@ -6,6 +6,7 @@ import {Sparkles,  ArrowRightLeft } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { TIMELINE } from "@/lib/data/timeline";
+import { BentoCard } from "@/components/ui/BentoCard";
 
 export function Story() {
   const [activeIdx, setActiveIdx] = useState<number>(5); // Default to current 2026 era
@@ -58,82 +59,82 @@ export function Story() {
 
         {/* Bento Summary Grid */}
         <div className="mb-16 grid gap-6 md:grid-cols-3">
-          
-          {/* Card 1: Sound DNA */}
-          <Reveal direction="up" delay={0.2} className="h-full">
-            <div className="flex h-full flex-col justify-between rounded-3xl border border-border/60 bg-card/40 p-6 md:p-8 backdrop-blur-xl">
-              <div>
+        
+        {/* Card 1: Sound DNA */}
+        <Reveal direction="up" delay={0.2} className="h-full">
+            <BentoCard className="h-full border-border/60">
+            <div>
                 <span className="font-mono text-xs uppercase tracking-widest text-accent">
-                  01 // SOUND BLUEPRINT
+                01 // SOUND BLUEPRINT
                 </span>
                 <h3 className="mt-3 font-anton text-2xl uppercase tracking-wide text-foreground">
-                  Fuji × Afrobeats × Amapiano
+                Fuji × Afrobeats × Amapiano
                 </h3>
                 <p className="mt-3 text-xs text-muted leading-relaxed">
-                  A high-energy fusion blending traditional Yoruba Fuji percussion with Afrobeats grooves, heavy Amapiano log drums, and street hip-hop delivery.
+                A high-energy fusion blending traditional Yoruba Fuji percussion with Afrobeats grooves, heavy Amapiano log drums, and street hip-hop delivery.
                 </p>
-              </div>
-              <div className="mt-6 flex flex-wrap gap-2">
+            </div>
+            <div className="mt-6 flex flex-wrap gap-2">
                 {["Fuji", "Afrobeats", "Amapiano", "Hip-Hop"].map((genre) => (
-                  <span
+                <span
                     key={genre}
                     className="rounded-full border border-border/80 bg-surface px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-foreground"
-                  >
+                >
                     {genre}
-                  </span>
+                </span>
                 ))}
-              </div>
             </div>
-          </Reveal>
+            </BentoCard>
+        </Reveal>
 
-          {/* Card 2: Voice & Identity */}
-          <Reveal direction="up" delay={0.3} className="h-full">
-            <div className="flex h-full flex-col justify-between rounded-3xl border border-border/60 bg-card/40 p-6 md:p-8 backdrop-blur-xl">
-              <div>
+        {/* Card 2: Voice & Identity */}
+        <Reveal direction="up" delay={0.3} className="h-full">
+            <BentoCard className="h-full border-border/60">
+            <div>
                 <span className="font-mono text-xs uppercase tracking-widest text-accent">
-                  02 // SONIC SIGNATURE
+                02 // SONIC SIGNATURE
                 </span>
                 <h3 className="mt-3 font-anton text-2xl uppercase tracking-wide text-foreground">
-                  Distinct Bass & Narrative
+                Distinct Bass & Narrative
                 </h3>
                 <p className="mt-3 text-xs text-muted leading-relaxed">
-                  Renowned for his unmistakable baritone bass voice, oSHAMO blends Yoruba, English, and Nigerian Pidgin into raw cultural anthems.
+                Renowned for his unmistakable baritone bass voice, oSHAMO blends Yoruba, English, and Nigerian Pidgin into raw cultural anthems.
                 </p>
-              </div>
-              <div className="mt-6 font-mono text-xs text-cta flex items-center gap-2">
+            </div>
+            <div className="mt-6 flex items-center gap-2 font-mono text-xs text-cta">
                 <span className="h-2 w-2 rounded-full bg-cta animate-pulse" />
                 <span>Signed to emPawa Africa</span>
-              </div>
             </div>
-          </Reveal>
+            </BentoCard>
+        </Reveal>
 
-          {/* Card 3: Metrics & Impact */}
-          <Reveal direction="up" delay={0.4} className="h-full">
-            <div className="flex h-full flex-col justify-between rounded-3xl border border-border/60 bg-card/40 p-6 md:p-8 backdrop-blur-xl">
-              <div>
+        {/* Card 3: Metrics & Impact */}
+        <Reveal direction="up" delay={0.4} className="h-full">
+            <BentoCard className="h-full border-border/60">
+            <div>
                 <span className="font-mono text-xs uppercase tracking-widest text-accent">
-                  03 // GLOBAL METRICS
+                03 // GLOBAL METRICS
                 </span>
                 <div className="mt-3 grid grid-cols-2 gap-4">
-                  <div>
+                <div>
                     <p className="font-anton text-3xl text-foreground">25M+</p>
-                    <p className="font-mono text-[10px] uppercase tracking-wider text-muted mt-1">
-                      Global Streams
+                    <p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-muted">
+                    Global Streams
                     </p>
-                  </div>
-                  <div>
-                    <p className="font-anton text-3xl text-accent">500K+</p>
-                    <p className="font-mono text-[10px] uppercase tracking-wider text-muted mt-1">
-                      Monthly Spotify
-                    </p>
-                  </div>
                 </div>
-              </div>
-              <div className="mt-6 rounded-2xl border border-accent/20 bg-accent/10 px-3.5 py-2 text-[11px] font-mono text-accent">
-                Shazam Fast Forward 2026 Artist
-              </div>
+                <div>
+                    <p className="font-anton text-3xl text-accent">500K+</p>
+                    <p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-muted">
+                    Monthly Spotify
+                    </p>
+                </div>
+                </div>
             </div>
-          </Reveal>
+            <div className="mt-6 rounded-2xl border border-accent/20 bg-accent/10 px-3.5 py-2 font-mono text-[11px] text-accent">
+                Shazam Fast Forward 2026 Artist
+            </div>
+            </BentoCard>
+        </Reveal>
 
         </div>
 

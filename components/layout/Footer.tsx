@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowUp, Globe, Mail } from "lucide-react";
 import { OshamoText } from "@/components/ui/OshamoText";
 import { Eyebrow } from "../ui/Eyebrow";
+import { BentoCard } from "../ui/BentoCard";
 
 function Github({ className, size = 16 }: { className?: string; size?: number }) {
   return (
@@ -60,7 +61,7 @@ export function Footer() {
         <div className="grid gap-6 py-12 md:grid-cols-2 lg:grid-cols-3">
           
           {/* Card 1: Project Info */}
-          <div className="group flex flex-col justify-between rounded-3xl border border-border/50 bg-card/40 p-6 md:p-8 backdrop-blur-xl transition-all duration-300 hover:border-border/90">
+          <BentoCard>
             <div className="flex flex-col gap-3">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono uppercase tracking-widest text-muted">
@@ -72,22 +73,22 @@ export function Footer() {
                 A fan-made digital experience and portfolio project created to showcase modern web design, fluid motion graphics, and visual artist identity for OSHAMO.
               </p>
             </div>
-          </div>
+          </BentoCard>
 
           {/* Card 2: Developer Credits */}
-          <div className="group flex flex-col justify-between rounded-3xl border border-border/50 bg-card/40 p-6 md:p-8 backdrop-blur-xl transition-all duration-300 hover:border-border/90">
+          <BentoCard>
             <div className="flex flex-col gap-4">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono uppercase tracking-widest text-muted">
                   02 // Engineering
                 </span>
-                <Eyebrow >Available</Eyebrow>
+                <Eyebrow>Available</Eyebrow>
               </div>
               <div>
                 <h3 className="text-xl font-bold tracking-wide text-foreground">
                   Job Emmanuel
                 </h3>
-                <p className="text-xs font-mono text-accent mt-1">
+                <p className="mt-1 font-mono text-xs text-accent">
                   Full-Stack Developer & Creative Technologist
                 </p>
               </div>
@@ -95,58 +96,36 @@ export function Footer() {
             <p className="mt-6 text-xs text-muted leading-relaxed">
               Crafting high-impact, interactive digital products for music, culture, and creative technology.
             </p>
-          </div>
+          </BentoCard>
 
           {/* Card 3: Connect Links */}
-          <div className="flex flex-col justify-between rounded-3xl border border-border/50 bg-card/40 p-6 md:p-8 backdrop-blur-xl md:col-span-2 lg:col-span-1 transition-all duration-300 hover:border-border/90">
-            <span className="text-xs font-mono uppercase tracking-widest text-muted mb-4">
+          <BentoCard className="md:col-span-2 lg:col-span-1">
+            <span className="mb-4 font-mono text-xs uppercase tracking-widest text-muted">
               03 // Connect
             </span>
             <ul className="flex flex-col gap-2 font-mono text-xs">
-              <li>
-                <a
-                  href="https://github.com/Emmanuelkorede"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group/link flex items-center justify-between rounded-2xl border border-border/40 bg-surface/50 p-3.5 transition-all duration-300 hover:border-cta/60 hover:bg-surface hover:text-cta"
-                >
-                  <div className="flex items-center gap-3">
-                    <Github size={16} className="text-muted group-hover/link:text-cta" />
-                    <span>GitHub</span>
-                  </div>
-                  <ArrowUpRight size={14} className="text-muted transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-hover/link:text-cta" />
-                </a>
-              </li>
-
-              <li>
-                <a
-                  href="https://jobexe.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group/link flex items-center justify-between rounded-2xl border border-border/40 bg-surface/50 p-3.5 transition-all duration-300 hover:border-cta/60 hover:bg-surface hover:text-cta"
-                >
-                  <div className="flex items-center gap-3">
-                    <Globe size={16} className="text-muted group-hover/link:text-cta" />
-                    <span>Portfolio</span>
-                  </div>
-                  <ArrowUpRight size={14} className="text-muted transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-hover/link:text-cta" />
-                </a>
-              </li>
-
-              <li>
-                <a
-                  href="mailto:emmanuelkorede572@gmail.com"
-                  className="group/link flex items-center justify-between rounded-2xl border border-border/40 bg-surface/50 p-3.5 transition-all duration-300 hover:border-cta/60 hover:bg-surface hover:text-cta"
-                >
-                  <div className="flex items-center gap-3">
-                    <Mail size={16} className="text-muted group-hover/link:text-cta" />
-                    <span>Email</span>
-                  </div>
-                  <ArrowUpRight size={14} className="text-muted transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-hover/link:text-cta" />
-                </a>
-              </li>
+              {[
+                { label: "GitHub", href: "https://github.com/Emmanuelkorede", Icon: Github },
+                { label: "Portfolio", href: "https://jobexe.vercel.app/", Icon: Globe },
+                { label: "Email", href: "mailto:emmanuelkorede572@gmail.com", Icon: Mail },
+              ].map(({ label, href, Icon }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="group/link flex items-center justify-between rounded-2xl border border-border/40 bg-surface/50 p-3.5 transition-all duration-300 hover:border-cta/60 hover:bg-surface hover:text-cta"
+                  >
+                    <div className="flex items-center gap-3">
+                      <Icon size={16} className="text-muted group-hover/link:text-cta" />
+                      <span>{label}</span>
+                    </div>
+                    <ArrowUpRight size={14} className="text-muted transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-hover/link:text-cta" />
+                  </a>
+                </li>
+              ))}
             </ul>
-          </div>
+          </BentoCard>
 
         </div>
 
