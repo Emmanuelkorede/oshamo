@@ -39,7 +39,6 @@ export default function RootLayout({ children }: Readonly<{children : React.Reac
       className={`${anton.variable} ${space.variable}`}
     >
       <body>
-        <Grain />
         <Cursor />
         <Preloader />
         <Nav />
