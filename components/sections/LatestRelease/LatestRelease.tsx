@@ -55,7 +55,7 @@ export function LatestRelease() {
                       SINGLE
                     </span>
                     <span className="font-mono text-xs text-muted">
-                      2025 // AFRO-ALTÉ
+                      2026
                     </span>
                   </div>
 
