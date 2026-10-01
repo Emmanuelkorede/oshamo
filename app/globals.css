@@ -131,3 +131,18 @@
     scroll-behavior: auto !important;
   }
 }
+
+
+/* Hide default cursor on fine pointers (desktop/mouse) */
+@media (pointer: fine) {
+  html,
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"] {
+    cursor: none !important;
+  }
+}
