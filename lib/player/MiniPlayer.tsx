@@ -9,8 +9,6 @@ export function MiniPlayer() {
 
   if (!currentTrack) return null;
 
-  const embedUrl = `https://open.spotify.com/embed/${currentTrack.type}/${currentTrack.spotifyId}?utm_source=generator&theme=0`;
-
   return (
     <AnimatePresence>
       {isMiniPlayerOpen && (
@@ -37,11 +35,11 @@ export function MiniPlayer() {
               </button>
             </div>
 
-            {/* Spotify Embed Iframe */}
+            {/* Spotify Embed Iframe - Locked to 152 for the MiniPlayer */}
             <div className="overflow-hidden rounded-xl">
               <iframe
                 title={`Spotify Player - ${currentTrack.title}`}
-                src={embedUrl}
+                src={currentTrack.embedUrl}
                 width="100%"
                 height="152"
                 frameBorder="0"
