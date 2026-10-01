@@ -62,7 +62,7 @@ export function LatestRelease() {
                     </span>
                   </div>
 
-                  <h3 className="font-anton text-4xl uppercase tracking-wide text-foreground sm:text-5xl md:text-6xl leading-tight mb-2">
+                  <h3 className="font-anton text-4xl uppercase tracking-wide text-foreground sm:text-5xl md:text-6xl leading-tight mb-2 select-none">
                     {latestTrack.title}
                   </h3>
 
