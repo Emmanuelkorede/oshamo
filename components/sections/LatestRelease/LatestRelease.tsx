@@ -1,14 +1,11 @@
 "use client";
 
-
-import { Sparkles, ExternalLink } from "lucide-react";
+import { Sparkles, ExternalLink, Play } from "lucide-react";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { PlayButton } from "@/lib/player/PlayButton";
 import { Reveal } from "@/components/ui/Reveal";
 import { TRACKS } from "@/lib/data/tracks";
 
 export function LatestRelease() {
-  // Find "For Your Tears" or fallback to the first track
   const latestTrack =
     TRACKS.find((t) => t.id === "for-your-tears") || TRACKS[0];
 
@@ -50,7 +47,7 @@ export function LatestRelease() {
           <div className="relative rounded-3xl border border-border/70 bg-card/60 p-6 md:p-10 backdrop-blur-xl shadow-2xl">
             <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
               
-              {/* Left Side: Editorial Track Info & Action */}
+              {/* Left Side: Track Info */}
               <div className="flex flex-col justify-between lg:col-span-6">
                 <div>
                   <div className="mb-3 flex items-center gap-3">
@@ -63,39 +60,33 @@ export function LatestRelease() {
                   </div>
 
                   <h3 className="font-anton text-4xl uppercase tracking-wide text-foreground sm:text-5xl md:text-6xl leading-tight mb-2">
-                    FOR YOUR TEARS
+                    {latestTrack.title}
                   </h3>
 
                   <p className="font-mono text-base text-accent mb-6">
-                    oSHAMO ft. Shiloh Yodellé
+                    {latestTrack.artist}
                   </p>
 
                   <p className="text-sm text-muted leading-relaxed max-w-lg mb-8">
-                    An emotional afro-fusion anthem blending soulful alté melodies, rhythmic percussion, and raw narrative storytelling between oSHAMO and Shiloh Yodellé.
+                    An emotional afro-fusion anthem blending soulful alté melodies, rhythmic percussion, and raw narrative storytelling.
                   </p>
                 </div>
 
                 <div className="flex flex-wrap items-center gap-4">
-                  {latestTrack && (
-                    <PlayButton
-                      track={latestTrack}
-                      size="lg"
-                      label="Stream Track"
-                    />
-                  )}
                   <a
                     href={`https://open.spotify.com/track/${latestTrack.spotifyId}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-surface px-5 py-3 font-mono text-xs uppercase tracking-wider text-foreground transition-all duration-200 hover:border-cta hover:text-cta"
+                    className="inline-flex items-center gap-2 rounded-full bg-cta px-6 py-3 font-mono text-xs uppercase tracking-wider text-background hover:bg-cta-hover transition-colors font-semibold"
                   >
-                    <span>Spotify App</span>
+                    <Play size={14} />
+                    <span>Open in Spotify</span>
                     <ExternalLink size={14} />
                   </a>
                 </div>
               </div>
 
-              {/* Right Side: Embedded Spotify Player Frame */}
+              {/* Right Side: Direct Embedded Player */}
               <div className="lg:col-span-6">
                 <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-surface shadow-xl">
                   <iframe

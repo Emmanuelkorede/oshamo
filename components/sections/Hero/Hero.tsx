@@ -3,14 +3,10 @@
 import Image from "next/image";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
-import { PlayButton } from "@/lib/player/PlayButton";
-import { TRACKS } from "@/lib/data/tracks";
 import { HeroBackground } from "./HeroBackground";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function Hero() {
-  const featuredTrack = TRACKS[0]; // "Why You Lying"
-
   return (
     <section
       id="hero"
@@ -43,13 +39,9 @@ export function Hero() {
 
             <Reveal direction="up" delay={0.4}>
               <div className="flex flex-wrap items-center gap-4">
-                {featuredTrack && (
-                  <PlayButton
-                    track={featuredTrack}
-                    size="lg"
-                    label={`Play Latest: ${featuredTrack.title}`}
-                  />
-                )}
+                <Button href="#latest-release" variant="primary" size="lg">
+                  Listen to Latest
+                </Button>
                 <Button href="#music" variant="outline" size="lg">
                   Explore Music
                 </Button>
