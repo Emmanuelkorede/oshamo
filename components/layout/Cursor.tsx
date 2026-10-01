@@ -55,7 +55,7 @@ export function Cursor() {
       }}
       animate={{
         scale: isHovered ? 2.2 : 1,
-        backgroundColor: isHovered ? "rgba(221, 182, 129, 0.15)" : "transparent",
+        backgroundColor: isHovered ? "rgba(221, 182, 129, 0.15)" : "rgba(221, 182, 129, 0)",
         borderColor: isHovered ? "#DDB681" : "#C28B5E",
       }}
       transition={{ scale: { duration: 0.15 } }}

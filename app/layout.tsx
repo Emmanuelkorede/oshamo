@@ -3,6 +3,12 @@ import { Anton, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import React from "react";
 
+import { Footer } from "@/components/layout/Footer";
+import { Grain } from "@/components/layout/Grain";
+import { Preloader } from "@/components/layout/Preloader";
+import { Nav } from "@/components/layout/Nav";
+import { Cursor } from "@/components/layout/Cursor";
+
 const anton = Anton({ weight: "400", variable: "--font-anton", subsets: ["latin"] });
 const space = Space_Grotesk({ variable: "--font-space-grotesk", subsets: ["latin"] });
 
@@ -31,7 +37,16 @@ export default function RootLayout({ children }: Readonly<{children : React.Reac
       className={`${anton.variable} ${space.variable}`}
     >
       <body>
-        {children}
+        <Grain />
+        <Cursor />
+        <Preloader />
+        <Nav />
+        
+        <main id="main-content">
+          {children}
+        </main>
+
+        <Footer />
       </body>
     </html>
   );
