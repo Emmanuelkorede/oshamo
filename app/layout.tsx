@@ -15,7 +15,7 @@ const space = Space_Grotesk({ variable: "--font-space-grotesk", subsets: ["latin
 
 
 export const metadata: Metadata = {
-  metadataBase :  new URL("http://localhost:3000") , 
+  metadataBase :  new URL("https://oshamo.vercel.app/") , 
 
   title: "OSHAMO —  Artist Website",
   description: "A fan-made artist website concept for oSHAMO, built as a portfolio project to explore immersive music experiences, visual storytelling, responsive design, and interactive frontend development. The concept brings his music, latest releases, visuals, and artist identity into one digital experience.",
