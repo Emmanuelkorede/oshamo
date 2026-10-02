@@ -12,14 +12,21 @@ import { VideoModal } from "@/components/ui/VideoModal";
 export function Videos() {
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
 
-  // Extract the featured hero video and the remaining grid videos
+  // Extract the featured video and ensure NO videos are excluded from the grid
   const featuredVideo = VIDEOS.find((v) => v.isFeatured) || VIDEOS[0];
-  const gridVideos = VIDEOS.filter((v) => !v.isFeatured);
+  const gridVideos = VIDEOS.filter((v) => v.id !== featuredVideo.id);
 
   // State for hero thumbnail fallback
   const [heroImgSrc, setHeroImgSrc] = useState(
     `https://img.youtube.com/vi/${featuredVideo.youtubeId}/maxresdefault.jpg`
   );
+
+  const handleHeroKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setActiveVideoId(featuredVideo.youtubeId);
+    }
+  };
 
   return (
     <section
@@ -31,10 +38,12 @@ export function Videos() {
         <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
             <Reveal direction="up" delay={0.1}>
-              <Eyebrow className="mb-3 flex items-center gap-2">
-                <Clapperboard size={14} />
-                CINEMATICS & VISUALS
-              </Eyebrow>
+                <Eyebrow className="mb-3">
+                    <span className="inline-flex items-center gap-2">
+                    <Clapperboard size={14} />
+                    <span>CINEMATICS & VISUALS</span>
+                    </span>
+                </Eyebrow>
             </Reveal>
             <Reveal direction="up" delay={0.2}>
               <h2 className="font-anton text-5xl uppercase tracking-wider text-foreground sm:text-6xl md:text-7xl">
@@ -47,10 +56,13 @@ export function Videos() {
         {/* HERO / FEATURED VIDEO */}
         <Reveal direction="up" delay={0.3}>
           <div
+            role="button"
+            tabIndex={0}
             onClick={() => setActiveVideoId(featuredVideo.youtubeId)}
-            className="group relative mb-8 w-full cursor-pointer overflow-hidden rounded-3xl border border-border/60 bg-surface shadow-2xl transition-all duration-500 hover:border-accent/80"
+            onKeyDown={handleHeroKeyDown}
+            className="group relative mb-8 w-full cursor-pointer overflow-hidden rounded-3xl border border-border/60 bg-surface shadow-2xl transition-all duration-500 hover:border-accent/80 focus:outline-none focus:ring-2 focus:ring-accent"
           >
-            {/* Max-res thumbnail for the hero visual using Next.js Image */}
+            {/* Max-res thumbnail for the hero visual */}
             <div className="relative h-[40vh] md:h-[60vh] w-full overflow-hidden">
               <Image
                 src={heroImgSrc}
@@ -59,7 +71,6 @@ export function Videos() {
                 priority
                 unoptimized
                 onError={() => {
-                  // Clean React fallback if maxresdefault doesn't exist
                   setHeroImgSrc(
                     `https://img.youtube.com/vi/${featuredVideo.youtubeId}/hqdefault.jpg`
                   );
@@ -81,7 +92,7 @@ export function Videos() {
               <div className="mb-3 inline-flex items-center gap-2 self-start rounded-full border border-border/60 bg-card/40 px-3 py-1 backdrop-blur-md">
                 <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
                 <span className="font-mono text-[10px] uppercase tracking-widest text-foreground">
-                  Featured Release
+                  Newest Release
                 </span>
               </div>
               <h3 className="font-anton text-4xl sm:text-5xl md:text-6xl uppercase text-white drop-shadow-lg">

@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { Play } from "lucide-react";
 import type { Video } from "@/lib/data/videos";
 import Image from "next/image";
@@ -10,13 +11,22 @@ interface VideoCardProps {
 }
 
 export function VideoCard({ video, onClick }: VideoCardProps) {
-  // Using hqdefault as it's universally available for all YouTube videos
   const thumbnailUrl = `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`;
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onClick(video.youtubeId);
+    }
+  };
 
   return (
     <div
+      role="button"
+      tabIndex={0}
       onClick={() => onClick(video.youtubeId)}
-      className="group relative flex cursor-pointer flex-col overflow-hidden rounded-3xl border border-border/50 bg-card/40 transition-all duration-300 hover:border-accent/60 shadow-lg"
+      onKeyDown={handleKeyDown}
+      className="group relative flex cursor-pointer flex-col overflow-hidden rounded-3xl border border-border/50 bg-card/40 transition-all duration-300 hover:border-accent/60 shadow-lg focus:outline-none focus:ring-2 focus:ring-accent"
     >
       {/* Thumbnail Container */}
       <div className="relative aspect-video w-full overflow-hidden bg-surface">
@@ -28,7 +38,7 @@ export function VideoCard({ video, onClick }: VideoCardProps) {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
         />
-        
+
         {/* Play Overlay */}
         <div className="absolute inset-0 flex items-center justify-center bg-background/20 transition-all duration-300 group-hover:bg-background/0">
           <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-background/80 text-foreground backdrop-blur-md transition-all duration-300 group-hover:scale-110 group-hover:bg-accent group-hover:border-transparent group-hover:text-background shadow-xl">
