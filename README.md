@@ -1,8 +1,8 @@
 <div align="center">
 
-# 🎵 oSHAMO | Unofficial Fan-Made Web Experience
+# 🎵 OSHAMO | Unofficial Fan-Made Web Experience
 
-An interactive digital portfolio and web experience celebrating **oSHAMO**, a rising artist bridging West African roots with the global alté movement (Lagos ⇄ London). Built to showcase his Fuji-fusion sound using a custom dark-mode, glassmorphic UI, interactive 3D typography depth, and responsive audio/video interfaces.
+An interactive digital portfolio and web experience celebrating **OSHAMO**, a rising artist bridging West African roots with the global alté movement (Lagos ⇄ London). Built to showcase his Fuji-fusion sound using a custom dark-mode, glassmorphic UI, interactive 3D typography depth, and responsive audio/video interfaces.
 
 ![Next.js](https://img.shields.io/badge/Next.js-App_Router-black?logo=nextdotjs)
 ![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=black)
@@ -16,7 +16,7 @@ An interactive digital portfolio and web experience celebrating **oSHAMO**, a ri
 
 ---
 
-> ⚠️ **Disclaimer:** This is an unofficial, fan-made concept project built purely as a design exploration and tribute to oSHAMO. It is **not affiliated with, maintained by, or officially connected to oSHAMO or his management team**.
+> ⚠️ **Disclaimer:** This is an unofficial, fan-made concept project built purely as a design exploration and tribute to oSHAMO. It is **not affiliated with, maintained by, or officially connected to OSHAMO or his management team**.
 
 ## 📑 Table of Contents
 
