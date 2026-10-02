@@ -27,7 +27,13 @@ export const metadata: Metadata = {
     type : "website" ,
     locale: "en_US",
     
-  }
+  } ,
+  twitter: {
+    card: "summary_large_image",
+    title: "OSHAMO —  Artist Website",
+    description:
+      "A fan-made artist website concept for oSHAMO, built as a portfolio project to explore immersive music experiences, visual storytelling, responsive design, and interactive frontend development.",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{children : React.ReactNode }>) {
