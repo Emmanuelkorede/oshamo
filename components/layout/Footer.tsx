@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, ArrowUp, Globe, Mail } from "lucide-react";
+import { ArrowUpRight, ArrowUp, Mail } from "lucide-react";
 import { OshamoText } from "@/components/ui/OshamoText";
 import { Eyebrow } from "../ui/Eyebrow";
 import { BentoCard } from "../ui/BentoCard";
@@ -88,7 +88,6 @@ export function Footer() {
             <ul className="flex flex-col gap-2 font-mono text-xs">
               {[
                 { label: "GitHub", href: "https://github.com/Emmanuelkorede", Icon: Github },
-                { label: "Portfolio", href: "https://jobexe.vercel.app/", Icon: Globe },
                 { label: "Email", href: "mailto:emmanuelkorede572@gmail.com", Icon: Mail },
               ].map(({ label, href, Icon }) => (
                 <li key={label}>

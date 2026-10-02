@@ -8,6 +8,8 @@ import { Preloader } from "@/components/layout/Preloader";
 import { Nav } from "@/components/layout/Nav";
 import { Cursor } from "@/components/layout/Cursor";
 
+import { Analytics } from "@vercel/analytics/next";
+
 
 const anton = Anton({ weight: "400", variable: "--font-anton", subsets: ["latin"] });
 const space = Space_Grotesk({ variable: "--font-space-grotesk", subsets: ["latin"] });
@@ -43,6 +45,7 @@ export default function RootLayout({ children }: Readonly<{children : React.Reac
       className={`${anton.variable} ${space.variable}`}
     >
       <body>
+        
         <Cursor />
         <Preloader />
         <Nav />
@@ -52,6 +55,7 @@ export default function RootLayout({ children }: Readonly<{children : React.Reac
           </main>
 
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
