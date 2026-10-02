@@ -44,7 +44,6 @@ export const TRACKS: readonly Track[] = [
     artist: "oSHAMO",
     spotifyId: "1JFUPITQUwMLglnth0hjGG",
     embedUrl: "https://open.spotify.com/embed/track/1JFUPITQUwMLglnth0hjGG?utm_source=generator&si=74d879df388f4b70" ,
-    isFeatured: true,
   },
   {
     id: "magba",
@@ -59,6 +58,8 @@ export const TRACKS: readonly Track[] = [
     artist: "oSHAMO",
     spotifyId: "2wUBujNySRbtpsv39Wy0lc",
     embedUrl: "https://open.spotify.com/embed/track/2wUBujNySRbtpsv39Wy0lc?utm_source=generator&si=f85db04efa854e8b",
+        isFeatured: true,
+
   },
   {
     id: "alaska",
@@ -80,5 +81,6 @@ export const TRACKS: readonly Track[] = [
     artist: "oSHAMO, Shiloh Yodellé",
     spotifyId: "2DbqaOFlZGobIJXT4IsxoO",
     embedUrl: "https://open.spotify.com/embed/track/2DbqaOFlZGobIJXT4IsxoO?utm_source=generator&si=c1a8c3e5363b4875",
+
   },
 ] as const;
