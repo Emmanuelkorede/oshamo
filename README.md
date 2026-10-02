@@ -1,6 +1,7 @@
 <div align="center">
 
 # 🎵 OSHAMO | Unofficial Fan-Made Web Experience
+<img width="1894" height="841" alt="Screenshot 2026-10-02 181147" src="https://github.com/user-attachments/assets/c4534a77-72e0-4eaf-a6d8-d3b82366faf1" />
 
 An interactive digital portfolio and web experience celebrating **OSHAMO**, a rising artist bridging West African roots with the global alté movement (Lagos ⇄ London). Built to showcase his Fuji-fusion sound using a custom dark-mode, glassmorphic UI, interactive 3D typography depth, and responsive audio/video interfaces.
 
