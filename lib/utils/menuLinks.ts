@@ -4,6 +4,5 @@ export const menuLinks = [
   { label: "Story", href: "/#story" },
   { label: "Discography", href: "/#discography" },
   { label: "Videos", href: "/#videos" },
-  { label: "Live / Tour", href: "/#live" },
   { label: "Socials", href: "/#socials" },
 ];
