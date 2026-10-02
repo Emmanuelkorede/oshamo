@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%" fill="none">
+  <defs>
+    <!-- Brand Gold & Accent Gradients -->
+    <linearGradient id="osm-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3D1" />
+      <stop offset="50%" stop-color="#E5A93C" />
+      <stop offset="100%" stop-color="#FF5500" />
+    </linearGradient>
+
+    <!-- Ambient Glow Filter -->
+    <filter id="osm-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <style>
+    .osm-text {
+      font-family: 'Anton', 'Impact', 'Syne', sans-serif;
+      font-size: 105px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+  </style>
+
+  <!-- Background Shield Frame -->
+  <path d="M 150 18 L 265 80 L 265 220 L 150 282 L 35 220 L 35 80 Z" fill="#0D0E12" stroke="url(#osm-gold)" stroke-width="3.5" stroke-linejoin="round"/>
+
+  <!-- Inner Geometric Border -->
+  <path d="M 150 28 L 255 85 L 255 215 L 150 272 L 45 215 L 45 85 Z" fill="none" stroke="#252833" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- Centered 'OSM' Monogram with Drop Shadow & Gold Gradient -->
+  <g transform="translate(154, 185)">
+    <!-- Shadow Layer -->
+    <text x="3" y="3" class="osm-text" fill="#000" text-anchor="middle" opacity="0.8">OSM</text>
+    <!-- Main Layer -->
+    <text x="0" y="0" class="osm-text" fill="url(#osm-gold)" text-anchor="middle" filter="url(#osm-glow)">OSM</text>
+  </g>
+
+  <!-- Top Accent Spark Star -->
+  <path d="M 150 42 L 153 52 L 163 55 L 153 58 L 150 68 L 147 58 L 137 55 L 147 52 Z" fill="url(#osm-gold)"/>
+
+  <!-- Bottom Arrow Symbol (Lagos ⇄ London Vibe) -->
+  <path d="M 135 250 L 165 250 M 160 245 L 165 250 L 160 255" stroke="url(#osm-gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
