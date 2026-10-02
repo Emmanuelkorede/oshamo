@@ -17,11 +17,11 @@ const space = Space_Grotesk({ variable: "--font-space-grotesk", subsets: ["latin
 export const metadata: Metadata = {
   metadataBase :  new URL("https://oshamo.vercel.app/") , 
 
-  title: "OSHAMO —  Artist Website",
+  title: "0SHAMO — Fuji-Fusion Artist | Fan Concept",
   description: "A fan-made artist website concept for oSHAMO, built as a portfolio project to explore immersive music experiences, visual storytelling, responsive design, and interactive frontend development. The concept brings his music, latest releases, visuals, and artist identity into one digital experience.",
 
   openGraph : {
-    title: "OSHAMO —  Artist Website",
+    title: "0SHAMO — Fuji-Fusion Artist | Fan Concept",
     description: "A fan-made artist website concept for oSHAMO, built as a portfolio project to explore immersive music experiences, visual storytelling, responsive design, and interactive frontend development. The concept brings his music, latest releases, visuals, and artist identity into one digital experience.",
     siteName : "oSHAMO" , 
     type : "website" ,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   } ,
   twitter: {
     card: "summary_large_image",
-    title: "OSHAMO —  Artist Website",
+    title: "0SHAMO — Fuji-Fusion Artist | Fan Concept",
     description:
       "A fan-made artist website concept for oSHAMO, built as a portfolio project to explore immersive music experiences, visual storytelling, responsive design, and interactive frontend development.",
   },
