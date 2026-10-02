@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { TRACKS } from "@/lib/data/tracks";
 
 export function Music() {
-  const [filter, setFilter] = useState<"all" | "featured">("all");
+  const [filter, setFilter] = useState<"all" | "featured">("featured");
 
   // Order tracks so highlights (isFeatured) come first
   const sortedTracks = [...TRACKS].sort((a, b) => {
