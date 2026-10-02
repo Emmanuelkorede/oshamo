@@ -23,7 +23,7 @@ export function Music() {
 
   return (
     <section
-      id="music"
+      id="discography"
       className="relative w-full overflow-hidden bg-background py-24 md:py-36 border-t border-border/40"
     >
       {/* Background Ambient Glows */}

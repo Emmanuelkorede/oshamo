@@ -15,30 +15,49 @@ export function Nav() {
   const [activeSection, setActiveSection] = useState("hero");
   const [hoveredSection, setHoveredSection] = useState<string | null>(null);
   const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
+  // Handle header background on scroll
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 40);
-
-      if (pathname !== "/") return;
-
-      const sections = navItems.map((item) => item.href.substring(1));
-      const scrollPosition = window.scrollY + 200;
-
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = document.getElementById(sections[i]);
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i]);
-          break;
-        }
-      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname]);
+  }, []);
 
-  const isHomePage = pathname === "/";
+  // Intersection Observer for Active Section Tracking
+  useEffect(() => {
+    if (!isHomePage) return;
+
+    const sectionIds = navItems
+      .map((item) => item.href.split("#")[1])
+      .filter(Boolean);
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -60% 0px",
+      threshold: 0,
+    };
+
+    const handleIntersect: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+
+    sectionIds.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [isHomePage]);
 
   return (
     <>
@@ -69,10 +88,11 @@ export function Nav() {
           )}
         >
           {navItems.map((item) => {
-            const sectionId = item.href.substring(1);
+            const sectionId = item.href.split("#")[1];
             const isActive = isHomePage && activeSection === sectionId;
             const isHovered = hoveredSection === sectionId;
-            const targetHref = isHomePage ? item.href : `/${item.href}`;
+            const isPillActive = isHovered || (isActive && !hoveredSection);
+            const targetHref = isHomePage ? `#${sectionId}` : item.href;
 
             return (
               <Link
@@ -81,22 +101,15 @@ export function Nav() {
                 onMouseEnter={() => setHoveredSection(sectionId)}
                 className={cn(
                   "relative rounded-full px-4 py-2 text-xs font-mono uppercase tracking-widest transition-colors duration-200 z-10",
-                  isActive || isHovered ? "text-background font-bold" : "text-muted hover:text-foreground"
+                  isActive || isHovered
+                    ? "text-background font-bold"
+                    : "text-muted hover:text-foreground"
                 )}
               >
                 {item.label}
 
-                {/* Sliding Pill Background for Active State */}
-                {isActive && !hoveredSection && (
-                  <motion.div
-                    layoutId="nav-pill"
-                    className="absolute inset-0 -z-10 rounded-full bg-foreground shadow-md"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                )}
-
-                {/* Sliding Pill Background for Hover State */}
-                {isHovered && (
+                {/* Animated Pill Background */}
+                {isPillActive && (
                   <motion.div
                     layoutId="nav-pill"
                     className="absolute inset-0 -z-10 rounded-full bg-cta shadow-md"
@@ -108,7 +121,7 @@ export function Nav() {
           })}
         </motion.nav>
 
-        {/* RIGHT ISLAND (MOBILE): Custom Animated Hamburger Pod */}
+        {/* RIGHT ISLAND (MOBILE): Hamburger Button */}
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -139,7 +152,7 @@ export function Nav() {
         </motion.div>
       </header>
 
-      {/* Fullscreen Mobile Menu Overlay */}
+      {/* Mobile Overlay Menu */}
       <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </>
   );
