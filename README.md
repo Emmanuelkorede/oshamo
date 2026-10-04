@@ -15,7 +15,7 @@ An interactive digital portfolio and web experience celebrating **OSHAMO**, a ri
 
 </div>
 
----
+--
 
 > ⚠️ **Disclaimer:** This is an unofficial, fan-made concept project built purely as a design exploration and tribute to oSHAMO. It is **not affiliated with, maintained by, or officially connected to OSHAMO or his management team**.
 
